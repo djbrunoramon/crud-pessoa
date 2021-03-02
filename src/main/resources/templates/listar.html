@@ -37,8 +37,8 @@
                     <td th:text="${p.nome} + ' ' + ${p.sobrenome}"></td>
                     <td th:text="${p.cpf}"></td>
                     <td th:text="${p.sexo}"></td>
-                    <td th:text="${p.altura}"></td>
-                    <td th:text="${p.peso}"></td>
+                    <td th:text="${#numbers.formatDecimal(p.altura,1,2)}"></td>
+                    <td th:text="${#numbers.formatDecimal(p.peso,1,2)}"></td>
                     <td th:text="${anoAtual}-${#temporals.year(p.dataNascimento)}"></td>
                     <td th:text="${#temporals.format(p.dataNascimento, 'dd/MM/yyyy')}"></td>
                     <td>

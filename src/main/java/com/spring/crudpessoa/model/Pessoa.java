@@ -32,6 +32,7 @@ public class Pessoa {
     private String sexo;
 
     @Column(name = "altura",precision = 4, scale = 2)
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#,##0.00")
     private BigDecimal altura;
 
     @Column(name = "peso")
