@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Pessoa</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container my-5">
+    <a class="btn btn-primary" th:href="@{/pessoa/listar}">Lista de Pessoas</a>
+    <div class="card mt-2">
+        <h5 class="card-header">
+            Cadastro de Pessoa
+        </h5>
+        <form class="card-body" th:action="@{/pessoa/salvar}" method="post" th:object="${pessoa}">
+            Nome: <input type="text" name="nome" th:field="*{nome}" class="form-control" required>
+            <br>
+            Sobrenome: <input type="text" name="sobrenome" th:field="*{sobrenome}" class="form-control" required>
+            <br>
+            CPF: <input type="text" name="cpf" th:field="*{cpf}" class="form-control" data-mask="000.000.000-00"
+                        required>
+            <br>
+            Data de Nascimento: <input type="date" name="dataNascimento" th:field="*{dataNascimento}"
+                                       class="form-control" required>
+            <br>
+            Peso (kg): <input type="text" name="peso" th:field="*{peso}" required class="form-control" data-mask="#.00"
+                              data-mask-reverse="true" maxlength="6">
+            <br>
+            Altura (m): <input type="text" name="altura" th:field="*{altura}" required class="form-control"
+                               data-mask="#.00"
+                               data-mask-reverse="true" maxlength="4">
+            <br>
+            Sexo:
+            <select name="sexo" th:field="*{sexo}" required class="form-select">
+                <option value="">Selecione</option>
+                <option value="-">-</option>
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
+            </select>
+            <br><br>
+            <input type="hidden" th:field="*{id}">
+            <button type="submit" class="btn btn-lg btn-success">Salvar</button>
+
+        </form>
+    </div>
+</div>
+
+<!--    Scripts-->
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/github-com-igorescobar-jQuery-Mask-Plugin/jquery.mask.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

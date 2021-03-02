@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Pessoa</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container my-5">
+    <a class="btn btn-primary" th:href="@{/pessoa/cadastrar}">Cadastrar</a>
+
+    <div class="card mt-2">
+
+        <h5 class="card-header">
+            Lista de Pessoas Cadastradas
+        </h5>
+
+        <div class="card-body">
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Sexo</th>
+                    <th>Altura (m)</th>
+                    <th>Peso (kg)</th>
+                    <th>Idade</th>
+                    <th>Nasceu em</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${pessoas}">
+                    <td th:text="${p.nome} + ' ' + ${p.sobrenome}"></td>
+                    <td th:text="${p.cpf}"></td>
+                    <td th:text="${p.sexo}"></td>
+                    <td th:text="${p.altura}"></td>
+                    <td th:text="${p.peso}"></td>
+                    <td th:text="${anoAtual}-${#temporals.year(p.dataNascimento)}"></td>
+                    <td th:text="${#temporals.format(p.dataNascimento, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a th:href="@{/pessoa/editar/{id} (id=${p.id})}"
+                           class="btn btn-sm btn-outline-primary">Editar</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/pessoa/excluir/{id} (id=${p.id})}"
+                           class="btn btn-sm btn-outline-danger">Excluir</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--    Scripts-->
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/github-com-igorescobar-jQuery-Mask-Plugin/jquery.mask.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
