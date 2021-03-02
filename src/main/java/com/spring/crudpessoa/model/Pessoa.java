@@ -35,6 +35,7 @@ public class Pessoa {
     private BigDecimal altura;
 
     @Column(name = "peso")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#,##0.00")
     private Double peso;
 
     public Pessoa() {
