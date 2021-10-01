@@ -1,14 +1,22 @@
 package com.spring.crudpessoa.model;
 
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pessoa")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pessoa {
 
     @Id
@@ -39,81 +47,16 @@ public class Pessoa {
     @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#,##0.00")
     private Double peso;
 
-    public Pessoa() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return Objects.equals(id, pessoa.id);
     }
 
-    public Pessoa(Long id, String nome, String sobrenome, LocalDate dataNascimento, String cpf, String sexo, BigDecimal altura, Double peso) {
-        this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.sexo = sexo;
-        this.altura = altura;
-        this.peso = peso;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public BigDecimal getAltura() {
-        return altura;
-    }
-
-    public void setAltura(BigDecimal altura) {
-        this.altura = altura;
-    }
-
-    public Double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Double peso) {
-        this.peso = peso;
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }
